@@ -9,36 +9,33 @@ export function cadastro() {
    <main>
 
      <div class = container-cadastro>
-
+     <section class="logotipo_cad">
+     
      <img src= ${logo_mundo_azul} alt="Logo da página"> 
 
-     <p>
-      O Mundo Azul, é uma rede social destinada a mães, pais e cuidadores 
-      de pessoas com TEA (Transtorno do Espectro Autista). 
-      Aqui você encontrará  acolhimento, empatia e dicas importantes para 
-      entender melhor sobre este mundo. 
-     </p>
-     
-      <input type = "name"  id = "name" name= "name" placeholder = "Nome completo" requered>
-      <label for="name" >Nome completo</label>
-
-      <input type = "email"  id = "email" name="email" placeholder = "E-mail" requered>
-      <label for="email" >E-mail</label>
-
-      <input type = "password"  id = "senha" name="senha" placeholder = "Senha" requered>
-      <label for="senha" >Senha</label>
+      </section>
       
-      <input type = "password"  id = "confirme a senha" name="confirme a senha" placeholder = 'Senha' requered>
+      <section class="campos_de_preenchimento">
+      <h2 class="subtitulo">Cadastre-se aqui!</h2>
+      <label for="name" >Nome completo</label>
+      <input type = "name"  class="name" id = "name" name= "name" placeholder = "" requered>
+      
+      <label for="email" >E-mail</label>
+      <input type = "email" class="email" id = "email" name="email" placeholder = "" requered>
+      
+      <label for="senha" >Senha</label>
+      <input type = "password" class="senha" id = "senha" name="senha" placeholder = "" requered>
+      
       <label for="confirme a senha">Confirme a Senha</label>
-
-      <a href = "/#"><button type="submit">Cadastrar</button></a>
-
+      <input type = "password"  class="senha" id = "confirme_a_senha" name="confirme a senha" placeholder = '' requered>
+      
+      <a href = "/#"><button type="submit" id="button">Cadastrar</button></a>
+      </section>
      </div>
-
    </main>
 
    <footer>
-     <p> Desenvolvido por Carolina Menezes e Lilian Damadi</p>
+     <p class="criadoras"> Desenvolvido por Carolina Menezes e Lilian Damadi</p>
    </footer>
 `;
   containerCadastro.innerHTML = templateCadastro;
@@ -47,6 +44,20 @@ export function cadastro() {
   cadastroPage.rel = "stylesheet";
   cadastroPage.href = "pages/Cadastro/cadastro.css";
   document.head.appendChild(cadastroPage);
+
+
+ function criarCadastro () {
+
+    const nome = document.getElementById("name");
+    const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
+    const confirmarSenha = document.getElementById("confirme_a_senha");
+    const botaoCriarUsuario = document.getElementById("button");
+
+ }
+
+
+
 
   return containerCadastro;
 }

@@ -1,19 +1,19 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"; /*acrescentei somente  signInWithEmailAndPassword para login*/
 import { auth } from "./configurações_do_firebase/"; /*importei do configurações do firebase*/
 
+
 export function cadastrarEmail (email, password) {
-createUserWithEmailAndPassword(auth, email, password) 
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-    console.log(userCredential.user)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    console.log(error) 
-  });
+console.log("antes da função")
+
+return createUserWithEmailAndPassword(auth, email, password) /*função da promessa*/ 
+
+  console.log("depois da função")
+  
 }
-/*chamei console.log para catch e then*/ /*estudar promisses*/
+
+export function fazerLogin (email, password) {
+
+return signInWithEmailAndPassword(auth, email, password) /*função da promessa*/ 
+
+  
+}

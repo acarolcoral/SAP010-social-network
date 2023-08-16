@@ -34,7 +34,7 @@ export function cadastro() {
    </main>
 
    <footer>
-     <p class="criadoras"> Desenvolvido por Carolina Menezes e Lilian Damadi</p>
+     <p class="criadoras"> Desenvolvido por Lilian Damadi</p>
    </footer>
 `;
   containerCadastro.innerHTML = templateCadastro;
@@ -50,18 +50,31 @@ export function cadastro() {
     const nome = containerCadastro.querySelector("#name");
     const email = containerCadastro.querySelector("#email");
     const senha = containerCadastro.querySelector("#senha");
-    const confirmarSenha = containerCadastro.querySelector("#confirme_a_senha");
-    
+       
     console.log("ola")
     nome.value  
     console.log(nome.value)
     console.log(email.value)
 
-    /*chamei a função cadastrarEmail aqui dentro da função e usnar os parametros nome e email*/
+    /*chamei a função cadastrarEmail aqui dentro da função e usar os parametros nome e email*/
 
     const emailCadastro = email.value;/*se chamar só email, vou chamar input e não quero isso, quero chamar o valor de email*/
     const senhaCadastro = senha.value;
-    cadastrarEmail(emailCadastro, senhaCadastro);
+
+    cadastrarEmail(emailCadastro, senhaCadastro) /*retorno da promessa*/
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      console.log(userCredential.user)
+      return user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      console.log(error) 
+    });
   }
   const botaoCriarUsuario = containerCadastro.querySelector("#button");
   botaoCriarUsuario.addEventListener("click", criarCadastro);

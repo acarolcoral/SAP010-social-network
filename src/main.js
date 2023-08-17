@@ -5,9 +5,10 @@
 //myFunction();
 
 import { cadastro } from './Pages/Cadastro/cadastro.js';
-import { login } from './Pages/Login/login.js';
+import { paginaLogin } from './Pages/Login/login.js';
 import { recuperarSenha } from './Pages/Recuperar senha/recuperar_senha.js';
 import home from './Pages/Home/home.js';
+import {feed} from './Pages/Feed/feed.js';
 
 
 const container = document.querySelector("#container");
@@ -19,7 +20,7 @@ const init = () => {
             container.appendChild(home());
             break;
         case "#login":
-            container.appendChild(login());
+            container.appendChild(paginaLogin());
             break;
         case "#cadastro":
             container.appendChild(cadastro());
@@ -30,6 +31,9 @@ const init = () => {
         case "#cadastro-clique-aqui":
             container.appendChild(cadastro());
             break;
+        case "#feed":
+            container.appendChild(feed());
+            break;
         default:
             container.appendChild(home());
 
@@ -39,6 +43,6 @@ const init = () => {
 
 window.addEventListener("load", () => {
     window.location.hash = ""
-    container.appendChild(home());
+    container.appendChild(home()); //trocar por feed enquanto estou codando
     init();
 })

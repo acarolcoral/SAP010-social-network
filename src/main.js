@@ -4,10 +4,10 @@
 
 //myFunction();
 
-import { cadastro } from './Pages/Cadastro/index.js';
+import { cadastro } from './Pages/Cadastro/cadastro.js';
 import { login } from './Pages/Login/login.js';
 import { recuperarSenha } from './Pages/Recuperar senha/recuperar_senha.js';
-import home from './Pages/Home/index.js';
+import home from './Pages/Home/home.js';
 
 
 const container = document.querySelector("#container");
@@ -38,6 +38,7 @@ const init = () => {
 }
 
 window.addEventListener("load", () => {
+    window.location.hash = ""
     container.appendChild(home());
     init();
 })

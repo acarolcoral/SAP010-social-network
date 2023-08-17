@@ -1,5 +1,6 @@
-import { cadastrarEmail } from "../../lib/firebase"; /*está importando a função cadastrarEmail do arquivo localizado em firebase.js*/
+import { cadastrarUsuario } from "../../lib/firebase"; 
 import logo_mundo_azul from "../Imagens/Mundo_azul_logo.png"
+
 export function cadastro() {
   const containerCadastro = document.createElement("div");
 
@@ -10,14 +11,14 @@ export function cadastro() {
    <main>
 
      <div class = container-cadastro>
-     <section class="logotipo_cad">
-     
-     <img src= ${logo_mundo_azul} alt="Logo da página"> 
 
-      </section>
+     <section class="logo_cadastro">     
+     <img src= ${logo_mundo_azul} alt="Logo da página">
+     </section>
       
       <section class="campos_de_preenchimento">
       <h2 class="subtitulo">Cadastre-se aqui!</h2>
+
       <label for="name" >Nome completo</label>
       <input type = "name"  class="name" id = "name" name= "name" placeholder = "" requered>
       
@@ -26,15 +27,16 @@ export function cadastro() {
       
       <label for="senha" >Senha</label>
       <input type = "password" class="senha" id = "senha" name="senha" placeholder = "" requered>
-      
-      <!--retirei "confirme a senha" conforme instrução da Moni-->  
-      <button type="submit" id="button">Cadastrar</button>
+       
+      <button type="button" id="button">Cadastrar</button>
       </section>
+
      </div>
+
    </main>
 
    <footer>
-     <p class="criadoras"> Desenvolvido por Carolina Menezes e Lilian Damadi</p>
+     <p class="criadora"> Desenvolvido por Carolina Menezes</p>
    </footer>
 `;
   containerCadastro.innerHTML = templateCadastro;
@@ -42,27 +44,35 @@ export function cadastro() {
   const cadastroPage = document.createElement("link");
   cadastroPage.rel = "stylesheet";
   cadastroPage.href = "pages/Cadastro/cadastro.css";
-  document.head.appendChild(cadastroPage);
+  document.head.appendChild(cadastroPage); // Será que o CSS está dendo aplicado em todas as páginas por conta desta linha?
 
 
   function criarCadastro () {
-    console.log("oi")
-    const nome = containerCadastro.querySelector("#name");
+
+    //const nome = containerCadastro.querySelector("#name");
     const email = containerCadastro.querySelector("#email");
     const senha = containerCadastro.querySelector("#senha");
-    const confirmarSenha = containerCadastro.querySelector("#confirme_a_senha");
-    
-    console.log("ola")
-    nome.value  
-    console.log(nome.value)
-    console.log(email.value)
-
-    /*chamei a função cadastrarEmail aqui dentro da função e usnar os parametros nome e email*/
-
-    const emailCadastro = email.value;/*se chamar só email, vou chamar input e não quero isso, quero chamar o valor de email*/
+    //const confirmarSenha = containerCadastro.querySelector("#confirme_a_senha");
+    const emailCadastro = email.value;
     const senhaCadastro = senha.value;
-    cadastrarEmail(emailCadastro, senhaCadastro);
+    cadastrarUsuario(emailCadastro, senhaCadastro)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      alert ("Cadastro realizado com sucesso!");
+      window.location.hash = "#login";
+      console.log(userCredential)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      alert ("Ocorreu algum erro, verifique se o e-mail está correto e/ou se a senha possui pelo menos 6 dígitos.");
+      console.log(error) 
+    });
   }
+
   const botaoCriarUsuario = containerCadastro.querySelector("#button");
   botaoCriarUsuario.addEventListener("click", criarCadastro);
   

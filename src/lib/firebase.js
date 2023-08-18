@@ -4,34 +4,32 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebas
 
 
 
-export function cadastrarUsuario (email, password) {
-return createUserWithEmailAndPassword(auth, email, password) 
+export function cadastrarUsuario(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password)
 }
 
-
+/*
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
+return onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        // ...
+    } else {
+        // User is signed out
+        // ...
+    }
 });
+*/
 
 
 
-const auth = getAuth();
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+
+export function login (email, password) {
+    
+    const auth = getAuth();
+    return signInWithEmailAndPassword(auth, email, password)
+        
+
+}

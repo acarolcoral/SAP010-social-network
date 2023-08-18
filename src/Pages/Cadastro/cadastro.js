@@ -1,5 +1,6 @@
+import './cadastro.css';
 import { cadastrarUsuario } from "../../lib/firebase"; 
-import logo_mundo_azul from "../Imagens/Mundo_azul_logo.png"
+import logo_mundo_azul from "../Imagens/Mundo_azul_logo.png";
 
 export function cadastro() {
   const containerCadastro = document.createElement("div");
@@ -41,11 +42,11 @@ export function cadastro() {
 `;
   containerCadastro.innerHTML = templateCadastro;
 
-  const cadastroPage = document.createElement("link");
+ /* const cadastroPage = document.createElement("link");
   cadastroPage.rel = "stylesheet";
   cadastroPage.href = "pages/Cadastro/cadastro.css";
   document.head.appendChild(cadastroPage); // Será que o CSS está dendo aplicado em todas as páginas por conta desta linha?
-
+*/
 
   function criarCadastro () {
 

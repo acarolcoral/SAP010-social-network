@@ -1,4 +1,5 @@
 import { fazerLogin } from "../../lib/firebase";
+import { feed } from "../Feed/feed";
 import logo_mundo_azul from "../Imagens/Mundo_azul_logo.png"
 import icone_login from "../Imagens/icone_login.jpg";
 import icone_senha from "../Imagens/icone_senha.jpg";
@@ -32,12 +33,12 @@ export function login () {
      <h1>Mundo Azul</h1>
      <img src= ${icone_login} alt="Ìcone do login" class="icone_login">
      <label for="login" >Login</label>
-     <input type = "text" class="login" id = "login" name="login" placeholder = "" required>
+     <input type = "text" class="login" id = "email-login" name="login" placeholder = "" required>
 
      <img src= ${icone_senha} alt="Ìcone da senha" class="icone_senha">
      <label for="senha" >Senha</label>
      <input type = "password"  class="login" id = "senha-login" name="senha" placeholder = "" required>
-      
+     
      <a href= "/#recuperar" id="recuperar-senha" class="recuperar-senha">Esqueci a senha</a>
           
      <button type="submit" id= "entrar">Entrar</button>
@@ -68,7 +69,8 @@ function entrarLogin () {
   fazerLogin (loginEmail, senhaEmail).then((userCredential) => {
   const user = userCredential.user;
   console.log("Usuário autenticado:", user);
-  return user;
+  console.log(window.location.hash)
+  window.location.hash = "feed" //executa a mudança para pagina feed (estudar mais window.location.hash )
   })
 
   .catch((error) => {

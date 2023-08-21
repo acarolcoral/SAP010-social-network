@@ -1,2 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    font-family: cursive, sans-serif;
+    background-color: #96BDC0; /*não esta puxando a cor certa*/
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #96BDC0; /*não esta puxando a cor certa*/
+    border: 2px solid #aabbec;
+    font-weight: bold;
+}
+.logotipo_cad img {
+    width: 100%;
+    max-width: 347px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+.campos_de_preenchimento {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 243px;
+    background: #96BDC0; /*não esta puxando a cor certa*/
+    border: 2px solid #202E56;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 20px;
+}
+h2.subtitulo {
+    color: #050820;
+    font-size: 24px;
+    text-align: center;
+}
+label {
+    text-align: left;
+    width: 100%;
+}
+input {
+    width: 100%;
+    max-width: 212px;
+}
+button {
+    width: 100%;
+    max-width: 131.61px;
+    height: 27.47px;
+    background: rgba(74, 93, 148, 0.49);
+    border: 1px solid #202E56;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.criadoras {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+p.criadoras {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: cursive;
+    font-size: 15px;
+    line-height: 12px;
+    color: #050820;
+}
+@media screen and (max-width: 600px) {
+    .logotipo_cad {
+        margin-top: 10px;
+    }
+    .campos_de_preenchimento {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+
+
+
 
 

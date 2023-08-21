@@ -7,7 +7,9 @@
 import { cadastro } from './Pages/Cadastro/index.js';
 import { login } from './Pages/Login/login.js';
 import { recuperarSenha } from './Pages/Recuperar senha/recuperar_senha.js';
+import { feed } from './Pages/Feed/feed.js';
 import home from './Pages/Home/index.js';
+
 
 
 const container = document.querySelector("#container");
@@ -20,6 +22,9 @@ const init = () => {
             break;
         case "#login":
             container.appendChild(login());
+            break;
+        case "#feed":
+            container.appendChild(feed());
             break;
         case "#cadastro":
             container.appendChild(cadastro());
@@ -37,7 +42,7 @@ const init = () => {
   })
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load",  () => {
     container.appendChild(home());
     init();
 })

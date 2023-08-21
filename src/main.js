@@ -5,11 +5,10 @@
 //myFunction();
 
 import { cadastro } from './Pages/Cadastro/index.js';
+import { feed } from './Pages/Feed/feed.js';
 import { login } from './Pages/Login/login.js';
 import { recuperarSenha } from './Pages/Recuperar senha/recuperar_senha.js';
-import { feed } from './Pages/Feed/feed.js';
-import home from './Pages/Home/index.js';
-
+//import { feed } from './Pages/Feed/feed.js';       
 
 
 const container = document.querySelector("#container");
@@ -43,6 +42,6 @@ const init = () => {
 }
 
 window.addEventListener("load",  () => {
-    container.appendChild(home());
+    container.appendChild(feed());
     init();
 })

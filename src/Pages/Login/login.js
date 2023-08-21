@@ -1,5 +1,4 @@
 import { fazerLogin } from "../../lib/firebase";
-import { feed } from "../Feed/feed";
 import logo_mundo_azul from "../Imagens/Mundo_azul_logo.png"
 import icone_login from "../Imagens/icone_login.jpg";
 import icone_senha from "../Imagens/icone_senha.jpg";
@@ -82,7 +81,7 @@ function entrarLogin () {
   }
  
   const botaoEntrar = containerLogin.querySelector("#entrar");
-  botaoEntrar.addEventListener("click", entrarLogin);
+  botaoEntrar.addEventListener("click", entrarLogin); 
 
 return containerLogin;
 }

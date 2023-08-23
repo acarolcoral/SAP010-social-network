@@ -1,46 +1,53 @@
 //import { entrarFeed } from "../Feed/feed.js";
-
 export function feed () {
-  const containerFeed = document.createElement("div");
-
+  const containerFeed = document.createElement("div"); //um novo elemento <div>bé criado e armazenado na variável containerFeed.
+//nas proximas linhas o código HTML  é definido como uma string multilinha na variável templateFeed.
   const templateFeed = `
 
-  <header>
-    <h1>Feed Page</h1>
+   <header>
+    <p>"Há palavras que ferem como espada, mas a língua dos sábios traz a cura... Provérbios 12:18".</p>
   </header>
 
-  <body>
+  <main>
 
-    <div>
-        <input type="text" id="feedInput" placeholder="Digite algo...">
-        <button id="submitBtn">Postar</button>
-    </div>
-    <div id="feedContainer">
-        <!-- Aqui é onde os feeds serão exibidos -->
-    </div>
-    </body>
-  `;
-  containerFeed.innerHTML = templateFeed;
+  <div class = "container-feed">
+         <textarea class="post" placeholder="O que deseja compartilhar?"></textarea>
+         <button id="btnPostar"  class="btn-post">Postar</button>
+       </div>
 
-const feedPage = document.createElement("link"); 
+  </main>
+  <footer>
+     <p class="desenvolvedora"> Desenvolvido por Lilian Damadi</p>
+     </footer>
+  ` ;
+  
+  containerFeed . innerHTML  =  templateFeed ; //o conteúdo do containerFeed é  preenchido com o código HTML definido na variável templateFeed.
+     
+const feedPage = document.createElement("link"); //criado para estilizar no CSS
 feedPage.rel = "stylesheet"; 
 feedPage.href = "pages/Feed/feed.css";
 document.head.appendChild(feedPage);
 
-const feedInput = document.querySelector('feedInput');
-      const submitBtn = document.querySelector('submitBtn');
-      const feedContainer = document.querySelector('feedContainer');
+/*const buttonPostar = containerFeed.querySelector("btnPostar");
 
-      submitBtn.addEventListener(('click', Postar) => { // Adicionando um ouvinte de evento ao botão de envio
-      const feedText = feedInput.value;
+buttonPostar.addEventListener("click", ()=> {
+  const modal = createModal(); //Modal abre caixa de diálogo quando botão for acionado
+  containerFeed.appendChild(modal);
+  modal.style.display = "flex" //faz o modal aparecer
+});*/
 
-      if (feedText.trim() !== '') { 
-        const newFeedItem = document.createElement('div'); // Criando um novo elemento de feed (por exemplo, uma div) e adicionando ao feedContainer
-        newFeedItem.textContent = feedText;
-        feedContainer.appendChild(newFeedItem);
-        feedInput.value = '';
-            }
-        });
+const textarea = containerFeed.querySelector(".post"); //.post é um seletor CSS que procura por um elemento com a classe CSS chamada "post".
+const btnPostar = containerFeed.querySelector("#btnPostar");
+btnPostar.addEventListener("click", () => {
+  const textoPost = textarea.value;
+  console.log("Texto do post:", textoPost);
+  });
+
+
+  return  containerFeed ;
+ 
+};
+
 
 /*entrarFeed (postarFeed).then((userCredential) => {
   const user = userCredential.user;
@@ -52,11 +59,8 @@ const feedInput = document.querySelector('feedInput');
   const errorCode = error.code;
   const errorMessage = error.message;
   return errorMessage + errorCode;      
-  });*
+  }); */
 
-  const botaoPostar = containerLogin.querySelector("#feedInput");
-  botaoEntrar.addEventListener("click", postarFeed); //mudar para */
 
-  return containerFeed;
-}
+
 

@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+   
 }
 
 body {
@@ -32,10 +32,10 @@ main {
 }
 
 .logotipo img {
+    display: flex;
     width: 100%;
     max-width: 347px;
     height: auto;
-    display: block;
     margin: 0 auto 20px;
    /* display: flex;
     flex-direction: column;

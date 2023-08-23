@@ -8,7 +8,7 @@ import { cadastro } from './Pages/Cadastro/index.js';
 import { feed } from './Pages/Feed/feed.js';
 import { login } from './Pages/Login/login.js';
 import { recuperarSenha } from './Pages/Recuperar senha/recuperar_senha.js';
-//import { feed } from './Pages/Feed/feed.js';       
+      
 
 
 const container = document.querySelector("#container");
@@ -16,12 +16,6 @@ const init = () => {
     window.addEventListener("hashchange", () => {
     container.innerHTML = "";
     switch(window.location.hash) {
-        case " ":
-            container.appendChild(home());
-            break;
-        case "#login":
-            container.appendChild(login());
-            break;
         case "#feed":
             container.appendChild(feed());
             break;
@@ -35,13 +29,13 @@ const init = () => {
             container.appendChild(cadastro());
             break;
         default:
-            container.appendChild(home());
+            container.appendChild(login());
 
     }
   })
 }
 
 window.addEventListener("load",  () => {
-    container.appendChild(feed());
+    container.appendChild(login());
     init();
 })

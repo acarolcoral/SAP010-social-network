@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"; /*acrescentei somente  signInWithEmailAndPassword para login*/
 import { auth } from "./configurações_do_firebase/"; /*importei do configurações do firebase*/
-//não sei qual é a função para o feed
+import { db } from "./configurações_do_firebase/";
 
 export function cadastrarEmail (email, password) {
 console.log("antes da função")
@@ -18,7 +18,7 @@ return signInWithEmailAndPassword(auth, email, password) /*função da promessa*
   
 }
 
-/*export function entrarFeed (devo usar Entrar?) {
+/*export function entrarFeed (coleção que é minha data base) {
 
   return signInWithEmailAndPassword(entrar) 
       

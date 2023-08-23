@@ -51,7 +51,7 @@ export function cadastro() {
     const email = containerCadastro.querySelector("#email");
     const senha = containerCadastro.querySelector("#senha");
 
-    console.log("ola")
+    console.log("oba")
     nome.value
     console.log(nome.value)
     console.log(email.value)

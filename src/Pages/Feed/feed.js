@@ -1,4 +1,4 @@
-//import { entrarFeed } from "../Feed/feed.js";
+import { collection, addDoc } from "firebase/firestore";
 export function feed () {
   const containerFeed = document.createElement("div"); //um novo elemento <div>bé criado e armazenado na variável containerFeed.
 //nas proximas linhas o código HTML  é definido como uma string multilinha na variável templateFeed.
@@ -41,6 +41,8 @@ const btnPostar = containerFeed.querySelector("#btnPostar");
 btnPostar.addEventListener("click", () => {
   const textoPost = textarea.value;
   console.log("Texto do post:", textoPost);
+
+  
   });
 
 
@@ -49,17 +51,7 @@ btnPostar.addEventListener("click", () => {
 };
 
 
-/*entrarFeed (postarFeed).then((userCredential) => {
-  const user = userCredential.user;
-  console.log("Usuário autenticado:", user);
-  
-  })
 
-  .catch((error) => {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  return errorMessage + errorCode;      
-  }); */
 
 
 

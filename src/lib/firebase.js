@@ -17,15 +17,32 @@ return signInWithEmailAndPassword(auth, email, password) /*função da promessa*
 
   
 }
+ 
+export const salvarPost =  async (mensagem) => {
+  const docRef = await addDoc(collection(db, "Postagens"), {
+    mensagem: "Tokyo",
+    data_hora: "Japan"
+  });
+  console.log("Document written with ID: ", docRef.id);
 
-/*export function entrarFeed (coleção que é minha data base) {
+  const postContainer = document.getElementById("post-container");
+    
+    const newPostButton = document.createElement("button");
+    newPostButton.innerText = "Novo Post"; // Defina o texto do botão como desejado
+    newPostButton.addEventListener("click", () => {
+        // Lógica a ser executada quando o botão for clicado
+        alert("Botão de novo post clicado!");
+    });
+    
+    postContainer.appendChild(newPostButton);
 
-  return signInWithEmailAndPassword(entrar) 
-      
-  }*/
+    console.log("Document written with ID: ", docRef.id);
+}
 
 
-import { getAuth, signOut } from "firebase/auth";
+
+
+//import { getAuth, signOut } from "firebase/auth";
 
 /*const auth = getAuth();
 signOut(auth).then(() => {

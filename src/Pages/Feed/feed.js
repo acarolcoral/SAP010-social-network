@@ -1,5 +1,11 @@
 import { collection, addDoc } from "firebase/firestore";
-export function feed () {
+import { async } from "regenerator-runtime";
+import { buscarPostagens } from "../../lib/firebase";
+import { salvarPost } from "../../lib/firebase";
+
+
+
+export function feed () { 
   const containerFeed = document.createElement("div"); //um novo elemento <div>bé criado e armazenado na variável containerFeed.
 //nas proximas linhas o código HTML  é definido como uma string multilinha na variável templateFeed.
   const templateFeed = `
@@ -10,7 +16,7 @@ export function feed () {
 
   <main>
 
-  <div class = "container-feed">
+  <div class = "container-feed" id="post-container">
          <textarea class="post" placeholder="O que deseja compartilhar?"></textarea>
          <button id="btnPostar"  class="btn-post">Postar</button>
        </div>
@@ -28,22 +34,37 @@ feedPage.rel = "stylesheet";
 feedPage.href = "pages/Feed/feed.css";
 document.head.appendChild(feedPage);
 
-/*const buttonPostar = containerFeed.querySelector("btnPostar");
-
-buttonPostar.addEventListener("click", ()=> {
-  const modal = createModal(); //Modal abre caixa de diálogo quando botão for acionado
-  containerFeed.appendChild(modal);
-  modal.style.display = "flex" //faz o modal aparecer
-});*/
 
 const textarea = containerFeed.querySelector(".post"); //.post é um seletor CSS que procura por um elemento com a classe CSS chamada "post".
 const btnPostar = containerFeed.querySelector("#btnPostar");
-btnPostar.addEventListener("click", () => {
+btnPostar.addEventListener("click", async () => {
   const textoPost = textarea.value;
   console.log("Texto do post:", textoPost);
-
   
+  
+  
+    await salvarPost(textoPost);
+  const postagens = await buscarPostagens();
+    const containerFeed = document.querySelector(".container-feed");
+    containerFeed.innerHTML = "";
+    postagens.forEach((post) => {
+      const postElement = document.createElement("div");
+      postElement.classList.add("postagem"); // Adicione uma classe para estilização
+
+      const mensagemElement = document.createElement("p");
+      mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
+
+      const dataElement = document.createElement("p");
+      dataElement.textContent = post.data; // Conteúdo da data da postagem
+      
+      postElement.appendChild(mensagemElement);
+      postElement.appendChild(dataElement);
+      containerFeed.appendChild(postElement);
+      postElement.textContent = post.mensagem; // Personalize conforme necessário
+      
   });
+
+   });
 
 
   return  containerFeed ;

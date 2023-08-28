@@ -1,4 +1,4 @@
-import { collection, addDoc } from "firebase/firestore";
+import { collection, getDoc, addDoc } from "firebase/firestore";
 import { async } from "regenerator-runtime";
 import { buscarPostagens } from "../../lib/firebase";
 import { salvarPost } from "../../lib/firebase";

@@ -44,6 +44,7 @@
   export const buscarPostagens = async () => {
     const mensagensRef = collection(db, "Postagens");
     const querySnapshot = await getDocs(mensagensRef);
+
     const postagens = [];
     querySnapshot.forEach((doc) => {
     const post = doc.data();
@@ -52,14 +53,7 @@
     return postagens;
 };
 
-(async () => {
-  try {
-    const postagens = await buscarPostagens();
-    console.log("Postagens:", postagens);
-  } catch (error) {
-    console.error("Erro ao buscar postagens:", error);
-  }
-})();
+
 
 
 //import { getAuth, signOut } from "firebase/auth";

@@ -1,10 +1,11 @@
 import { collection, getDoc, addDoc } from "firebase/firestore";
-import { async } from "regenerator-runtime";
+//import { async } from "regenerator-runtime";
 import { salvarPost, buscarPostagens } from "../../lib/firebase";
+import { async } from "regenerator-runtime";
 
 
 export function feed() {
-  const containerFeed = document.createElement("div"); //um novo elemento <div>bé criado e armazenado na variável containerFeed.
+  const containerFeed = document.createElement("div"); //um novo elemento <div>é criado e armazenado na variável containerFeed.
   //nas proximas linhas o código HTML  é definido como uma string multilinha na variável templateFeed.
   const templateFeed = `
 
@@ -16,7 +17,10 @@ export function feed() {
 
   <div class = "container-feed" id="post-container">
          <textarea class="post" placeholder="O que deseja compartilhar?"></textarea>
+         <p>$(mensagem)</p>
+         <p>$(timestamp.toDate())</p>
          <button id="btnPostar"  class="btn-post">Postar</button>
+         <button id="apagar post" class="apagar-post">Apagar</button>
        </div>
 
   </main>
@@ -31,6 +35,8 @@ export function feed() {
   feedPage.rel = "stylesheet";
   feedPage.href = "pages/Feed/feed.css";
   document.head.appendChild(feedPage);
+
+  const btnDelete = containerFeed.querySelector('#apagar-post-${}');
 
 
   const textarea = containerFeed.querySelector(".post"); //.post é um seletor CSS que procura por um elemento com a classe CSS chamada "post".
@@ -48,9 +54,10 @@ export function feed() {
 
     /*const containerFeed = document.querySelector(".container-feed");
     containerFeed.innerHTML = "";*/
-    postagens.forEach((post) => {
+  
+      postagens.forEach((post) => {
       const postElement = document.createElement("div");
-      postElement.classList.add("postagem"); // Adicione uma classe para estilização
+      postElement.classList.add("postagem"); // Adiciona uma classe para estilização
 
       const mensagemElement = document.createElement("p");
       mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
@@ -61,8 +68,25 @@ export function feed() {
       postElement.appendChild(mensagemElement);
       postElement.appendChild(dataElement);
       containerFeed.appendChild(postElement);
-      postElement.textContent = post.mensagem; // Personalize conforme necessário
+      //postElement.textContent = post.mensagem; // 
 
+      const printPost = async () => {
+        buscarPostagens.innerHTML = '';
+
+        const posts = await salvarPost();
+        posts.forEach(post => {
+        console.log(post);
+
+          });
+      };
+      
+      printPost();
+      btnPostar.addEventListener('click', ()=> {
+        const postContainer = containerFeed.querySelector('#post-container');
+        console.log(postContainer);
+        salvarPost (postContainer.value);
+        printPost();
+      });
     });
    
   });

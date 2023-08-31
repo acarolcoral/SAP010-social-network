@@ -29,17 +29,17 @@
     console.log("Postagem salva com ID: ", docRef.id);  //docRef.id tem o ID do documento recém-adicionado  e imprime no console.
 
   
-    const postContainer = document.getElementById("post-container");
-      const newPostButton = document.createElement("button");
-      newPostButton.innerText = "Novo Post"; // Defina o texto do botão como desejado
-      newPostButton.addEventListener("click", () => {
-          // Lógica a ser executada quando o botão for clicado
-          alert("Botão de novo post clicado!");
-      });
-      
-      postContainer.appendChild(newPostButton);
-      console.log("Document written with ID: ", docRef.id);
-  }
+  //   const postContainer = document.getElementById("post-container");
+  //     const newPostButton = document.createElement("button");
+  //     newPostButton.innerText = "Novo Post"; // Defina o texto do botão como desejado
+  //     newPostButton.addEventListener("click", () => {
+  //         // Lógica a ser executada quando o botão for clicado
+  //         alert("Botão de novo post clicado!");
+  //     });
+      //
+   // postContainer.appendChild(newPostButton);
+    console.log("Document written with ID: ", docRef.id);
+   }
 
   export const buscarPostagens = async () => {
     const mensagensRef = collection(db, "Postagens");

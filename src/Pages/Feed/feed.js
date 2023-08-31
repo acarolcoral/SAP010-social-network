@@ -1,5 +1,3 @@
-import { collection, getDoc, addDoc } from "firebase/firestore";
-//import { async } from "regenerator-runtime";
 import { salvarPost, buscarPostagens } from "../../lib/firebase";
 import { async } from "regenerator-runtime";
 
@@ -16,7 +14,7 @@ export function feed() {
   <main>
 
   <div class = "container-feed" id="post-container">
-         <textarea class="post" placeholder="O que deseja compartilhar?"></textarea>
+         <textarea class="post"  placeholder="O que deseja compartilhar?"></textarea>
          <p>$(mensagem)</p>
          <p>$(timestamp.toDate())</p>
          <button id="btnPostar"  class="btn-post">Postar</button>
@@ -36,61 +34,62 @@ export function feed() {
   feedPage.href = "pages/Feed/feed.css";
   document.head.appendChild(feedPage);
 
-  const btnDelete = containerFeed.querySelector('#apagar-post-${}');
+  //const btnDelete = containerFeed.querySelector('#apagar-post-${}');
 
 
   const textarea = containerFeed.querySelector(".post"); //.post é um seletor CSS que procura por um elemento com a classe CSS chamada "post".
   const btnPostar = containerFeed.querySelector("#btnPostar");
+
   btnPostar.addEventListener("click", async () => {
     const textoPost = textarea.value;
     console.log("Texto do post:", textoPost);
+    if (textoPost.trim() !== "") { // Verifica se o texto não está vazio ou só contém espaços
+     
+      await salvarPost(textoPost);
+      const postagens = await buscarPostagens();
+      const postContainer = containerFeed.querySelector("#post-container");
+      postContainer.innerHTML = "";
+      
 
+      /*const containerFeed = document.querySelector(".container-feed");
+      containerFeed.innerHTML = "";*/
 
-
-    await salvarPost(textoPost);
-    const postagens = await buscarPostagens();
-    const postContainer = containerFeed.querySelector("#post-container");
-    postContainer.innerHTML = "";
-
-    /*const containerFeed = document.querySelector(".container-feed");
-    containerFeed.innerHTML = "";*/
-  
       postagens.forEach((post) => {
-      const postElement = document.createElement("div");
-      postElement.classList.add("postagem"); // Adiciona uma classe para estilização
+        const postElement = document.createElement("div");
+        postElement.classList.add("postagem"); // Adiciona uma classe para estilização
 
-      const mensagemElement = document.createElement("p");
-      mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
+        const mensagemElement = document.createElement("p");
+        mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
 
-      const dataElement = document.createElement("p");
-      dataElement.textContent = post.data; // Conteúdo da data da postagem
+        const dataElement = document.createElement("p");
+        dataElement.textContent = post.data; // Conteúdo da data da postagem
 
-      postElement.appendChild(mensagemElement);
-      postElement.appendChild(dataElement);
-      containerFeed.appendChild(postElement);
-      //postElement.textContent = post.mensagem; // 
+        postElement.appendChild(mensagemElement);
+        postElement.appendChild(dataElement);
+        containerFeed.appendChild(postElement);
+        //postElement.textContent = post.mensagem; // 
 
-      const printPost = async () => {
-        buscarPostagens.innerHTML = '';
-
-        const posts = await salvarPost();
-        posts.forEach(post => {
-        console.log(post);
+        const printPost = async () => {
+          buscarPostagens.innerHTML = '';
+          const posts = await salvarPost();
+          posts.forEach(post => {
+            console.log(post);
 
           });
-      };
-      
-      printPost();
-      btnPostar.addEventListener('click', ()=> {
-        const postContainer = containerFeed.querySelector('#post-container');
-        console.log(postContainer);
-        salvarPost (postContainer.value);
-        printPost();
-      });
-    });
-   
-  });
+        };
 
+        printPost();
+        btnPostar.addEventListener('click', () => {
+          const postContainer = containerFeed.querySelector('#post-container');
+          console.log(postContainer);
+          salvarPost(postContainer.value);
+          printPost();
+        });
+      });
+
+    };
+
+  });
 
   return containerFeed;
 

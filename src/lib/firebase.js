@@ -42,7 +42,7 @@
    }
 
   export const buscarPostagens = async () => {
-    const mensagensRef = collection(db, "Postagens");
+    const mensagensRef = collection(db, "postagens");
     const querySnapshot = await getDocs(mensagensRef);
 
     const postagens = [];

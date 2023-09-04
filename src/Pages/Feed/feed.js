@@ -1,5 +1,5 @@
 import { salvarPost, buscarPostagens } from "../../lib/firebase";
-import { async } from "regenerator-runtime";
+//import { async } from "regenerator-runtime";
 
 
 export function feed() {
@@ -47,26 +47,29 @@ export function feed() {
      
       await salvarPost(textoPost);
       const postagens = await buscarPostagens();
-      const postContainer = containerFeed.querySelector("#post-container");
-      postContainer.innerHTML = "";
+      //const postContainer = containerFeed.querySelector("#post-container");
+      //postContainer.innerHTML = "";
       
 
       /*const containerFeed = document.querySelector(".container-feed");
       containerFeed.innerHTML = "";*/
 
+     console.log(postagens)
       postagens.forEach((post) => {
-        const postElement = document.createElement("div");
-        postElement.classList.add("postagem"); // Adiciona uma classe para estilização
+        console.log(post)
 
-        const mensagemElement = document.createElement("p");
-        mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
+        // const postElement = document.createElement("div");
+        // postElement.classList.add("postagem"); // Adiciona uma classe para estilização
 
-        const dataElement = document.createElement("p");
-        dataElement.textContent = post.data; // Conteúdo da data da postagem
+        // const mensagemElement = document.createElement("p");
+        // mensagemElement.textContent = post.mensagem; // Conteúdo da mensagem
 
-        postElement.appendChild(mensagemElement);
-        postElement.appendChild(dataElement);
-        containerFeed.appendChild(postElement);
+        // const dataElement = document.createElement("p");
+        // dataElement.textContent = post.data; // Conteúdo da data da postagem
+
+        // postElement.appendChild(mensagemElement);
+        // postElement.appendChild(dataElement);
+        // containerFeed.appendChild(postElement);
         //postElement.textContent = post.mensagem; // 
 
         const printPost = async () => {

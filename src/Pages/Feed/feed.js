@@ -1,4 +1,5 @@
 import { salvarPost, buscarPostagens } from "../../lib/firebase";
+import { excluirPost } from "../../lib/firebase";
 //import { async } from "regenerator-runtime";
 
 
@@ -18,7 +19,7 @@ export function feed() {
          <p class="mensagem"></p>
          <p class="timestamp"></p>
          <button id="btnPostar"  class="btn-post">Postar</button>
-         <button id="apagar post" class="apagar-post">Apagar</button>
+         <button id="excluir post" class="excluir post">Excluir</button>
        </div>
 
   </main>
@@ -34,7 +35,7 @@ export function feed() {
   feedPage.href = "pages/Feed/feed.css";
   document.head.appendChild(feedPage);
 
-  //const btnDelete = containerFeed.querySelector('#apagar-post-${}');
+  //const btnDelete = containerFeed.querySelector('#apagar-post');
 
 
   const textarea = containerFeed.querySelector(".post"); //.post é um seletor CSS que procura por um elemento com a classe CSS chamada "post".
@@ -44,12 +45,12 @@ export function feed() {
     const textoPost = textarea.value;
     console.log("Texto do post:", textoPost);
     if (textoPost.trim() !== "") { // Verifica se o texto não está vazio ou só contém espaços
-     
+
       await salvarPost(textoPost);
       const postagens = await buscarPostagens();
       const postContainer = containerFeed.querySelector("#post-container");
       postContainer.innerHTML = "";
-      
+
       postagens.forEach((post) => {
         const postElement = document.createElement("div");
         postElement.classList.add("postagem");
@@ -60,8 +61,15 @@ export function feed() {
         const timestampElement = document.createElement("p");
         timestampElement.textContent = post.data;
 
+        const excluirButton = document.createElement("button");
+        excluirButton.textContent = "Excluir";
+        excluirButton.addEventListener("click", () => {
+          excluirPost(post.id); // Chama a função para excluir a postagem ao clicar no botão
+        });
+
         postElement.appendChild(mensagemElement);
         postElement.appendChild(timestampElement);
+        postElement.appendChild(excluirButton); // Adicionei o botão "Excluir" à postagem
         postContainer.appendChild(postElement);
       });
     };
@@ -74,8 +82,8 @@ export function feed() {
 
 
 
-      /*const containerFeed = document.querySelector(".container-feed");
-      containerFeed.innerHTML = "";*/
+/*const containerFeed = document.querySelector(".container-feed");
+containerFeed.innerHTML = "";*/
 
     //  console.log(postagens)
     // postagens.forEach((post) => {
@@ -93,7 +101,7 @@ export function feed() {
         // postElement.appendChild(mensagemElement);
         // postElement.appendChild(dataElement);
         // containerFeed.appendChild(postElement);
-        //postElement.textContent = post.mensagem; // 
+        //postElement.textContent = post.mensagem; //
 
         // const printPost = async () => {
         //   buscarPostagens.innerHTML = '';

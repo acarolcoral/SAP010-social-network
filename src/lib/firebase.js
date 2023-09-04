@@ -2,6 +2,7 @@
   import { auth } from "./configurações_do_firebase/"; /*importei do configurações do firebase*/
   import { db } from "./configurações_do_firebase/";
   import { addDoc, collection, getDocs } from "firebase/firestore";
+  
 
 
   export function cadastrarEmail (email, password) {
@@ -54,8 +55,14 @@
     return postagens;
 };
 
-
-
+export const excluirPost = async (postId) => {
+  try {
+    await deleteDoc(doc(db, "postagens", postId)); // Exclui o documento com o ID especificado
+    console.log("Postagem excluída com sucesso!");
+  } catch (error) {
+    console.error("Erro ao excluir postagem:", error);
+  }
+};
 
 //import { getAuth, signOut } from "firebase/auth";
 

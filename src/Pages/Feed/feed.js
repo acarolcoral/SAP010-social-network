@@ -15,8 +15,8 @@ export function feed() {
 
   <div class = "container-feed" id="post-container">
          <textarea class="post"  placeholder="O que deseja compartilhar?"></textarea>
-         <p>$(mensagem)</p>
-         <p>$(timestamp.toDate())</p>
+         <p class="mensagem"></p>
+         <p class="timestamp"></p>
          <button id="btnPostar"  class="btn-post">Postar</button>
          <button id="apagar post" class="apagar-post">Apagar</button>
        </div>
@@ -47,16 +47,39 @@ export function feed() {
      
       await salvarPost(textoPost);
       const postagens = await buscarPostagens();
-      //const postContainer = containerFeed.querySelector("#post-container");
-      //postContainer.innerHTML = "";
+      const postContainer = containerFeed.querySelector("#post-container");
+      postContainer.innerHTML = "";
       
+      postagens.forEach((post) => {
+        const postElement = document.createElement("div");
+        postElement.classList.add("postagem");
+
+        const mensagemElement = document.createElement("p");
+        mensagemElement.textContent = post.mensagem;
+
+        const timestampElement = document.createElement("p");
+        timestampElement.textContent = post.data;
+
+        postElement.appendChild(mensagemElement);
+        postElement.appendChild(timestampElement);
+        postContainer.appendChild(postElement);
+      });
+    };
+  });
+  return containerFeed;
+}
+
+
+
+
+
 
       /*const containerFeed = document.querySelector(".container-feed");
       containerFeed.innerHTML = "";*/
 
-     console.log(postagens)
-      postagens.forEach((post) => {
-        console.log(post)
+    //  console.log(postagens)
+    // postagens.forEach((post) => {
+    //     console.log(post)
 
         // const postElement = document.createElement("div");
         // postElement.classList.add("postagem"); // Adiciona uma classe para estilização
@@ -72,31 +95,31 @@ export function feed() {
         // containerFeed.appendChild(postElement);
         //postElement.textContent = post.mensagem; // 
 
-        const printPost = async () => {
-          buscarPostagens.innerHTML = '';
-          const posts = await salvarPost();
-          posts.forEach(post => {
-            console.log(post);
+        // const printPost = async () => {
+        //   buscarPostagens.innerHTML = '';
+        //   const posts = await salvarPost();
+        //   posts.forEach(post => {
+        //     console.log(post);
 
-          });
-        };
+        //   });
+        // };
 
-        printPost();
-        btnPostar.addEventListener('click', () => {
-          const postContainer = containerFeed.querySelector('#post-container');
-          console.log(postContainer);
-          salvarPost(postContainer.value);
-          printPost();
-        });
-      });
+//         printPost();
+//         btnPostar.addEventListener('click', () => {
+//           const postContainer = containerFeed.querySelector('#post-container');
+//           console.log(postContainer);
+//           salvarPost(postContainer.value);
+//           printPost();
+//         });
+//       });
 
-    };
+//     };
 
-  });
+//   });
 
-  return containerFeed;
+//   return containerFeed;
 
-};
+// };
 
 
 

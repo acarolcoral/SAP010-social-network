@@ -24,7 +24,8 @@
   export const salvarPost =  async (mensagem) => {
     const docRef = await addDoc(collection(db, "postagens"), { // AddDoc adiciona um novo documento a  coleção "Postagens"
     mensagem: mensagem,                                             //db é um objeto com dados, tem dois campos "mensagem" e "data"
-    //data: new Date().toISOString() //como fazer  data funcionar?                    //await para aguardar a conclusão da operação de adição do documento
+    //data: new Date().toISOString() 
+    //await para aguardar a conclusão da operação de adição do documento
     });
     console.log("Postagem salva com ID: ", docRef.id);  //docRef.id tem o ID do documento recém-adicionado  e imprime no console.
 
